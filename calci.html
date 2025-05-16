@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.calculator {
+    border: 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 320px;
+    background-color: #dc9696;
+}
+
+#display {
+    width: 100%;
+    height: 50px;
+    border: none;
+    background-color: #a9e2f5;
+    text-align: right;
+    padding: 10px;
+    font-size: 1.5em;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+button {
+    width: 100%;
+    height: 60px;
+    border: none;
+    background-color: #f2f2f2;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #f3b3b3;
+}
+
+</style>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="deleteLast()">DEL</button>
+            <button onclick="appendSymbol('(')">(</button>
+            <button onclick="appendSymbol(')')">)</button>
+            <button onclick="appendSymbol('7')">7</button>
+            <button onclick="appendSymbol('8')">8</button>
+            <button onclick="appendSymbol('9')">9</button>
+            <button onclick="appendSymbol('/')">/</button>
+            <button onclick="appendSymbol('4')">4</button>
+            <button onclick="appendSymbol('5')">5</button>
+            <button onclick="appendSymbol('6')">6</button>
+            <button onclick="appendSymbol('*')">*</button>
+            <button onclick="appendSymbol('1')">1</button>
+            <button onclick="appendSymbol('2')">2</button>
+            <button onclick="appendSymbol('3')">3</button>
+            <button onclick="appendSymbol('-')">-</button>
+            <button onclick="appendSymbol('0')">0</button>
+            <button onclick="appendSymbol('.')">.</button>
+            <button onclick="appendSymbol('+')">+</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendSymbol('Math.sin(')">sin</button>
+            <button onclick="appendSymbol('Math.cos(')">cos</button>
+            <button onclick="appendSymbol('Math.tan(')">tan</button>
+            <button onclick="appendSymbol('Math.log10(')">log</button>
+            <button onclick="appendSymbol('Math.sqrt(')">√</button>
+            <button onclick="appendSymbol('Math.pow(')">x<sup>y</sup></button>
+            <button onclick="appendSymbol('Math.PI')">π</button>
+            <button onclick="appendSymbol('Math.E')">e</button>
+        </div>
+    </div>
+    <script>
+        function clearDisplay() {
+    document.getElementById('display').value = '';
+}
+
+function deleteLast() {
+    const display = document.getElementById('display');
+    display.value = display.value.slice(0, -1);
+}
+
+function appendSymbol(symbol) {
+    const display = document.getElementById('display');
+    display.value += symbol;
+}
+
+function calculate() {
+    const display = document.getElementById('display');
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Error';
+    }
+}
+
+    </script>
+</body>
+</html>
